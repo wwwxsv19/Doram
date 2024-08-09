@@ -1,4 +1,4 @@
-package bssm.devcoop.domain.user.service;
+package bssm.devcoop.domain.book.service;
 
 import bssm.devcoop.domain.book.Book;
 import bssm.devcoop.domain.book.repository.BookRepository;
@@ -11,6 +11,11 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class UserService {
+public class BookService {
+    private final String publishedType = "3";
+    private final BookRepository bookRepository;
 
+    public List<Book> getPublished(String userId) {
+        return bookRepository.findAllById_UserIdAndBookType(userId, publishedType);
+    }
 }

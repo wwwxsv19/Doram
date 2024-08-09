@@ -1,5 +1,6 @@
 package bssm.devcoop.domain.user;
 
+import bssm.devcoop.domain.book.Book;
 import bssm.devcoop.domain.user.types.Role;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -19,37 +20,37 @@ public class User {
     @Column(name = "userId")
     private String userId;
 
-    @Column(name = "userId")
+    @Column(name = "userName")
     private String userName;
 
-    @Column(name = "userId")
+    @Column(name = "userIntroduce")
     private String userIntroduce;
 
-    @Column(name = "userId")
+    @Column(name = "userImage")
     private String userImage;
 
-    @Column(name = "userId")
+    @Column(name = "userEmail")
     private String userEmail;
 
-    @Column(name = "userId")
+    @Column(name = "userBirth")
     private LocalDate userBirth;
 
-    @Column(name = "userId")
+    @Column(name = "userPassword")
     private String userPassword;
 
-    @Column(name = "userId")
+    @Column(name = "joinedAt")
     private LocalDate joinedAt;
 
     @Column(name = "roles")
     private Role roles;
 
-//    @OneToMany(
-//            mappedBy = "user",
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true
-//    )
-//    @JsonManagedReference
-//    private List<Book> bookList = new ArrayList<>();
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonManagedReference
+    private List<Book> bookList = new ArrayList<>();
 
     @Builder
     public User(
