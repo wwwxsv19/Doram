@@ -3,13 +3,12 @@ package bssm.devcoop.domain.book.presentation;
 import bssm.devcoop.domain.book.Book;
 import bssm.devcoop.domain.book.presentation.dto.ReadDto;
 import bssm.devcoop.domain.book.service.BookService;
+import bssm.devcoop.global.exception.GlobalException;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,12 +29,13 @@ public class BookController {
         int bookCount = 0;
 
         for(Book book : bookList) {
+            Long bookId = book.getId().getBookId();;
             ReadDto.BookList bookRes = ReadDto.BookList.builder()
-                    .bookId(book.getId().getBookId())
-                    .userId(book.getId().getUserId())
+                    .bookId(bookId)
+                    .userId(userId)
                     .bookTitle(book.getBookTitle())
-                    .bookCategory(book.getBookCategory())
-                    .bookType(book.getBookType())
+                    .likedCount(bookService.getLikedCount(bookId))
+                    .commentCount(bookService.getCommentCount(bookId))
                     .build();
 
             readBookList.add(bookRes);
@@ -47,5 +47,14 @@ public class BookController {
                 .build();
 
         return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> searchBooks(@RequestParam String keyword, String where) throws GlobalException {
+        log.info("Search Books from keyword : {} from : {}", keyword, where);
+
+        List<Book> searchList = bookService.search(keyword, where);
+
+        return ResponseEntity.ok().body(searchList);
     }
 }

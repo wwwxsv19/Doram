@@ -10,8 +10,8 @@ public class ReadDto {
         private Long bookId;
         private String userId;
         private String bookTitle;
-        private char bookCategory;
-        private char bookType;
+        private int likedCount;
+        private int commentCount;
     }
 
     @Builder
