@@ -1,0 +1,18 @@
+# defalut
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DB_HOST}/${DB_NAME}?serverTimezone=UTC&characterEncoding=UTF-8
+    password: ${DB_PW}
+    username: ${DB_ID}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+  main:
+    allow-bean-definition-overriding: true
+
+jwt:
+  secret: 2024CODEDevcoopSecretKey##
+  expiration: 3600000 # 30 minutes in milliseconds
