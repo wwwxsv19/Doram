@@ -1,4 +1,4 @@
-package bssm.devcoop.domain.user;
+package bssm.devcoop.entity.user;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

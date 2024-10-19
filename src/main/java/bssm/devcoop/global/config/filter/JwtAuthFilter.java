@@ -1,8 +1,8 @@
 package bssm.devcoop.global.config.filter;
 
-import bssm.devcoop.domain.user.CustomUserDetails;
-import bssm.devcoop.domain.user.User;
-import bssm.devcoop.domain.user.types.Role;
+import bssm.devcoop.entity.user.CustomUserDetails;
+import bssm.devcoop.entity.user.User;
+import bssm.devcoop.entity.user.types.Role;
 import bssm.devcoop.global.utils.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

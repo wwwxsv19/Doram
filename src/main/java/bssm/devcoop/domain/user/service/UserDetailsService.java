@@ -1,8 +1,8 @@
 package bssm.devcoop.domain.user.service;
 
-import bssm.devcoop.domain.user.CustomUserDetails;
-import bssm.devcoop.domain.user.User;
-import bssm.devcoop.domain.user.repository.UserRepository;
+import bssm.devcoop.entity.user.CustomUserDetails;
+import bssm.devcoop.entity.user.User;
+import bssm.devcoop.entity.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

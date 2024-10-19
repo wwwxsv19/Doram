@@ -1,6 +1,6 @@
 package bssm.devcoop.global.config.filter;
 
-import bssm.devcoop.domain.user.CustomUserDetails;
+import bssm.devcoop.entity.user.CustomUserDetails;
 import bssm.devcoop.global.utils.JwtUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;

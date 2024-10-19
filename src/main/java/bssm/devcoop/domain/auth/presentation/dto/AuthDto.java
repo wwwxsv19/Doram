@@ -12,6 +12,5 @@ public class AuthDto {
         private String userEmail;
         private LocalDate userBirth;
         private String userPassword;
-        private LocalDate joinedAt;
     }
 }

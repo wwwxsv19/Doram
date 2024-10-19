@@ -1,10 +1,9 @@
 package bssm.devcoop.domain.book.presentation;
 
-import bssm.devcoop.domain.book.Book;
+import bssm.devcoop.entity.book.Book;
 import bssm.devcoop.domain.book.presentation.dto.ReadDto;
 import bssm.devcoop.domain.book.service.BookService;
 import bssm.devcoop.global.exception.GlobalException;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

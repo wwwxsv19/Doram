@@ -1,4 +1,4 @@
-package bssm.devcoop.domain.book;
+package bssm.devcoop.entity.book;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

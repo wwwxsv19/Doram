@@ -1,7 +1,7 @@
 package bssm.devcoop.domain.book.service;
 
-import bssm.devcoop.domain.book.Book;
-import bssm.devcoop.domain.book.repository.BookRepository;
+import bssm.devcoop.entity.book.Book;
+import bssm.devcoop.entity.book.repository.BookRepository;
 import bssm.devcoop.global.exception.GlobalException;
 import bssm.devcoop.global.exception.enums.ErrorCode;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ public class BookService {
         if (where.equals("0")) {
             return bookRepository.findBooksByBookTitleContains(keyword);
         } else if(where.equals("1")) {
-            return bookRepository.findBooksByBookWriterContains(keyword);
+            return bookRepository.findBooksById_UserIdContains(keyword);
         } else if(where.equals("2")) {
             return bookRepository.findBooksByBookTagContains(keyword);
         }

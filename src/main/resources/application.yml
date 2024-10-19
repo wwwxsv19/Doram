@@ -3,15 +3,21 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${DB_HOST}/${DB_NAME}?serverTimezone=UTC&characterEncoding=UTF-8
-    password: ${DB_PW}
-    username: ${DB_ID}
+    url: jdbc:mysql://localhost:3306/connection?serverTimezone=UTC&characterEncoding=UTF-8
+    password: 1234
+    username: root
   jpa:
     hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       ddl-auto: update
     generate-ddl: true
   main:
     allow-bean-definition-overriding: true
+
+server:
+  servlet:
+    context-path: /api
 
 jwt:
   secret: 2024CODEDevcoopSecretKey##

@@ -1,6 +1,6 @@
-package bssm.devcoop.domain.user.repository;
+package bssm.devcoop.entity.user.repository;
 
-import bssm.devcoop.domain.user.User;
+import bssm.devcoop.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, String> {
