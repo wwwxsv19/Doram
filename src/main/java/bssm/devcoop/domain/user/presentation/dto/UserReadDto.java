@@ -1,12 +1,12 @@
-package bssm.devcoop.domain.book.presentation.dto;
+package bssm.devcoop.domain.user.presentation.dto;
 
 import lombok.Builder;
 
 import java.util.List;
 
-public class ReadDto {
+public class UserReadDto {
     @Builder
-    public static class BookList {
+    public static class Books {
         private Long bookId;
         private String userId;
         private String bookTitle;
@@ -16,7 +16,6 @@ public class ReadDto {
 
     @Builder
     public static class BooksResponse {
-        private List<BookList> bookList;
-        private int bookCount;
+        private List<Books> bookList;
     }
 }

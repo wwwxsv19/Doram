@@ -20,7 +20,7 @@ public class AuthController {
 
 //    @PostMapping("/signup")
 //    public ResponseEntity<?> signUp(@RequestBody AuthDto.SignUpRequest request) {
-//        log.info("Sign Up Sta rted");
+//        log.info("Sign Up Started");
 //
 //        try {
 //            if(userService.getUserByUserId()) {
