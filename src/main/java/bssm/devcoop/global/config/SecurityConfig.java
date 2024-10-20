@@ -58,7 +58,9 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(
                         auth -> auth
-                                .anyRequest().authenticated())
+                                .requestMatchers("/user/books/**").permitAll()
+                                .anyRequest().authenticated()
+                )
 
                 .addFilterBefore(loginFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class)

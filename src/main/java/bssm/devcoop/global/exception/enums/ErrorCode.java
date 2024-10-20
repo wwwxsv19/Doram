@@ -2,22 +2,21 @@ package bssm.devcoop.global.exception.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
 public enum ErrorCode {
-    // client Error
-    Bad_Request(400, "bad request : "),
+    // 4xx
+    BOOK_BAD_REQUEST(HttpStatus.BAD_REQUEST.value()),
 
-    Forbidden(403, "forbidden : "),
+    FORBIDDEN(HttpStatus.FORBIDDEN.value()),
 
-    Not_Found(404, "not found : "),
+    USER_NOT_FOUND(HttpStatus.NOT_FOUND.value()),
 
-    Conflict(409, "duplicate : "),
+    CONFLICT(HttpStatus.CONFLICT.value()),
 
-    // server Error
-    Internal_Server_Error(500, "internal server error");
+    USER_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR.value());
 
     private final int status;
-    private final String message;
 }
