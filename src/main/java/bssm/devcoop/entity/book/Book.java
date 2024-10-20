@@ -1,5 +1,7 @@
 package bssm.devcoop.entity.book;
 
+import bssm.devcoop.entity.book.types.BookCategory;
+import bssm.devcoop.entity.book.types.BookType;
 import bssm.devcoop.entity.mapping.comment.Comment;
 import bssm.devcoop.entity.mapping.favorite.Favorite;
 import bssm.devcoop.entity.mapping.liked.Liked;
@@ -9,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,13 +30,15 @@ public class Book {
 
     private String bookTag; // JSON
 
-    private char bookCategory;
+    @Enumerated(EnumType.STRING)
+    private BookCategory bookCategory;
 
     private String bookContent;
 
-    private char bookType;
+    @Enumerated(EnumType.STRING)
+    private BookType bookType;
 
-    private String publishedAt;
+    private LocalDateTime publishedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("userId")

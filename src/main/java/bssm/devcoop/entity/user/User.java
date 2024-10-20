@@ -11,6 +11,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class User {
 
     private String userPassword;
 
-    private LocalDate joinedAt;
+    private LocalDateTime joinedAt;
 
     @Enumerated(EnumType.STRING)
     private Role roles;
