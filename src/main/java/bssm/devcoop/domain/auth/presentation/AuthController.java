@@ -49,9 +49,14 @@ public class AuthController {
 
         try {
             userService.saveUser(user);
-            return ResponseEntity.ok().body("회원 가입이 완료되었습니다!");
         } catch (GlobalException e) {
             return ResponseEntity.status(e.getErrorCode().getStatus()).body(e.getMessage());
         }
+
+        AuthDto.SignUpResponse response = AuthDto.SignUpResponse.builder()
+                .message("회원 가입이 완료되었습니다!")
+                .build();
+
+        return ResponseEntity.ok().body(response);
     }
 }

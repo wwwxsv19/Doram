@@ -36,7 +36,6 @@ public class UserController {
             log.info("Found User : {}", userId);
 
             List<Book> bookList = user.getBookList();
-            log.info("Get BookList's Size : {}", bookList.size());
 
             log.info("Mapping BookList to UserReadDto");
             List<UserReadDto.Books> readBookList = bookList.stream()
@@ -45,17 +44,16 @@ public class UserController {
                         log.info("BookId : {} is PUBLISHED", book.getBookId());
                         return UserReadDto.Books.builder()
                                 .bookId(book.getBookId())
-                                .userId(book.getUserId())
                                 .bookTitle(book.getBookTitle())
+                                .publishedAt(book.getPublishedAt())
                                 .likedCount(book.getLikedList() != null ? book.getLikedList().size() : 0)
                                 .commentCount(book.getCommentList() != null ? book.getCommentList().size() : 0)
                                 .build();
                     })
                     .collect(Collectors.toList());
 
-            log.info("Get readBookList's Size : {}", readBookList.size());
-
             UserReadDto.BooksResponse response = UserReadDto.BooksResponse.builder()
+                    .bookCount(readBookList.size())
                     .bookList(readBookList)
                     .build();
 

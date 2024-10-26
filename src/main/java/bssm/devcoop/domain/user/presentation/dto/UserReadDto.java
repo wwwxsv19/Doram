@@ -3,6 +3,7 @@ package bssm.devcoop.domain.user.presentation.dto;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class UserReadDto {
@@ -10,8 +11,8 @@ public class UserReadDto {
     @Getter
     public static class Books {
         private int bookId;
-        private String userId;
         private String bookTitle;
+        private LocalDateTime publishedAt;
         private int likedCount;
         private int commentCount;
     }
@@ -19,6 +20,7 @@ public class UserReadDto {
     @Builder
     @Getter
     public static class BooksResponse {
+        private int bookCount;
         private List<Books> bookList;
     }
 }
