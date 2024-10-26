@@ -27,11 +27,11 @@ public class JwtUtil {
 
     private final UserDetailsService userDetailsService;
 
-    public String createJwt(String email, String roles) {
-        log.info("Create JWT Started with secretKey nu: {}", secretKey);
+    public String createJwt(String id, String roles) {
+        log.info("Create JWT Started with User : {}", id);
 
         Claims claims = Jwts.claims();
-        claims.put("userEmail", email);
+        claims.put("userId", id);
         claims.put("roles", roles);
         Date now = new Date();
 
@@ -44,20 +44,20 @@ public class JwtUtil {
     }
 
     public Authentication getAuthentication(String token) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserEmail(token));
+        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserId(token));
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
 
-    public String getUserEmail(String token) {
+    public String getUserId(String token) {
         try {
             return Jwts.parserBuilder()
                     .setSigningKey(secretKey)
                     .build()
                     .parseClaimsJws(token)
                     .getBody()
-                    .get("userEmail", String.class);
+                    .get("userId", String.class);
         } catch (Exception e) {
-            log.error("Error getting email from token : {}", token, e);
+            log.error("Error getting Id from token : {}", token, e);
             return null;
         }
     }

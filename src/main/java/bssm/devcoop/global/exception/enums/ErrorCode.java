@@ -16,7 +16,9 @@ public enum ErrorCode {
 
     CONFLICT(HttpStatus.CONFLICT.value()),
 
-    USER_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR.value());
+    USER_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR.value()),
+
+    BOOK_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR.value());
 
     private final int status;
 }

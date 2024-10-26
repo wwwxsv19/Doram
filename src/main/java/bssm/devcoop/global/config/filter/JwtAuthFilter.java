@@ -47,12 +47,12 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         }
 
         // 토큰에서 사용자 정보 추출
-        String userEmail = jwtUtil.getUserEmail(token);
+        String userId = jwtUtil.getUserId(token);
         Role role = Role.valueOf(jwtUtil.getRoles(token));
 
         // 사용자 정보로 User 객체 생성
         User user = User.builder()
-                .userEmail(userEmail)
+                .userId(userId)
                 .userPassword("") // 패스워드는 의미가 없으므로 빈 값 설정
                 .roles(role)
                 .build();

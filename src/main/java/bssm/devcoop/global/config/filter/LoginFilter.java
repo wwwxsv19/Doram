@@ -46,15 +46,15 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
             throw new RuntimeException(e);
         }
 
-        String userEmail = loginRequest.get("userEmail");
+        String userId = loginRequest.get("userId");
         String userPassword = loginRequest.get("userPassword");
 
-        log.info("Received UserEmail : {}", userEmail);
+        log.info("Received UserId : {}", userId);
         log.info("Received UserPassword : {}", userPassword);
 
         // 사용자 인증을 위한 토큰 생성 후 Manager 에게 인증 요청
 
-        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userEmail, userPassword);
+        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userId, userPassword);
 
         log.info("Created Token : {}", authToken);
 
@@ -73,20 +73,20 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
         CustomUserDetails customUserDetails = (CustomUserDetails) authResult.getPrincipal();
 
-        // 사용자 정보 ( email, role ) 추출
-        String userEmail = customUserDetails.getUserEmail();
+        // 사용자 정보 ( userId, role ) 추출
+        String userId = customUserDetails.getUserId();
         String role = customUserDetails.getAuthorities().iterator().next().getAuthority();
 
-        log.info("Generating token for user : {} with role : {}", userEmail, role);
+        log.info("Generating token for user : {} with role : {}", userId, role);
 
         // 토큰 생성 후 헤더에 추가
-        String token = jwtUtil.createJwt(userEmail, role);
+        String token = jwtUtil.createJwt(userId, role);
         log.info("Generated Token : {}", token);
 
         response.addHeader("Authorization", "Bearer " + token);
         log.info("Added token to response header");
 
-        response.getWriter().write(userEmail);
+        response.getWriter().write(userId);
 
         log.info("Added responseDto to body");
     }
