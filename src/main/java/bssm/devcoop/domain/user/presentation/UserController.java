@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "/user", produces = "application/json; charset=UTF8") // 설정 다시 할 것
+@RequestMapping(value = "/user", produces = "application/json; charset=UTF8")
 @RequiredArgsConstructor
 @Slf4j
 public class UserController {
@@ -36,21 +36,24 @@ public class UserController {
             log.info("Found User : {}", userId);
 
             List<Book> bookList = user.getBookList();
+            log.info("Get BookList's Size : {}", bookList.size());
 
             log.info("Mapping BookList to UserReadDto");
             List<UserReadDto.Books> readBookList = bookList.stream()
                     .filter(book -> book.getBookType() == BookType.PUBLISHED)
                     .map(book -> {
-                        BookId bookId = book.getId();
+                        log.info("BookId : {} is PUBLISHED", book.getBookId());
                         return UserReadDto.Books.builder()
-                                .bookId(bookId.getBookId())
-                                .userId(bookId.getUserId())
+                                .bookId(book.getBookId())
+                                .userId(book.getUserId())
                                 .bookTitle(book.getBookTitle())
-                                .likedCount(book.getLikedList().size())
-                                .commentCount(book.getCommentList().size())
+                                .likedCount(book.getLikedList() != null ? book.getLikedList().size() : 0)
+                                .commentCount(book.getCommentList() != null ? book.getCommentList().size() : 0)
                                 .build();
                     })
                     .collect(Collectors.toList());
+
+            log.info("Get readBookList's Size : {}", readBookList.size());
 
             UserReadDto.BooksResponse response = UserReadDto.BooksResponse.builder()
                     .bookList(readBookList)
