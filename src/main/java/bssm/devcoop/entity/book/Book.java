@@ -10,10 +10,14 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.Type;
+import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Builder
 @Entity
@@ -23,12 +27,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Book {
-    @EmbeddedId
-    private BookId id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int bookId;
+
+    private String userId;
 
     private String bookTitle;
 
-    private String bookTag; // JSON
+    @JdbcTypeCode(SqlTypes.JSON)
+    private Map<String, String> bookTags; // JSON
 
     @Enumerated(EnumType.STRING)
     private BookCategory bookCategory;
@@ -41,10 +49,9 @@ public class Book {
     private LocalDateTime publishedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("userId")
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "userId", insertable = false, updatable = false)
     @JsonBackReference
-    private User userId;
+    private User user;
 
     @OneToMany(
             mappedBy = "bookId",
@@ -69,4 +76,9 @@ public class Book {
     )
     @JsonManagedReference
     private List<Favorite> favoriteList = new ArrayList<>();
+
+    public void setAuthor(User user) {
+        this.user = user;
+        user.addBookList(this);
+    }
 }

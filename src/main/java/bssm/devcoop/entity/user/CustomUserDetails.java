@@ -19,8 +19,8 @@ public class CustomUserDetails implements UserDetails {
         return Collections.singletonList(new SimpleGrantedAuthority(user.getRoles().name()));
     }
 
-    public String getUserEmail() {
-        return user.getUserEmail();
+    public String getUserId() {
+        return user.getUserId();
     }
 
     @Override

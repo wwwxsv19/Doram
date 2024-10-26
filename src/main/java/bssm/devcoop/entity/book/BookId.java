@@ -1,25 +1,18 @@
 package bssm.devcoop.entity.book;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
+@Builder
 @Embeddable
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class BookId {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bookId")
     private Long bookId;
 
     @Column(name = "userId")
     private String userId;
-
-    @Builder
-    public BookId(Long bookId, String userId) {
-        this.bookId = bookId;
-        this.userId = userId;
-    }
 }

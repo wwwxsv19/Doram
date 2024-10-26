@@ -66,4 +66,8 @@ public class User {
     )
     @JsonManagedReference
     private List<Follow> followingList = new ArrayList<>();
+
+    public void addBookList(Book book) {
+        bookList.add(book);
+    }
 }

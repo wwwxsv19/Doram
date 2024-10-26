@@ -26,10 +26,12 @@ public class Comment {
     private LocalDateTime createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-            @JoinColumn(name = "bookId"),
-            @JoinColumn(name = "userId")
-    })
+    @JoinColumn(name = "bookId")
     @JsonBackReference
     private Book bookId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId")
+    @JsonBackReference
+    private User userId;
 }
